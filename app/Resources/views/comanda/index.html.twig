@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Comanda list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Mesa</th>
+                <th>Comanda</th>
+                <th>Importe</th>
+                <th>Pagado</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comanda in comandas %}
+            <tr>
+                <td><a href="{{ path('comanda_show', { 'id': comanda.id }) }}">{{ comanda.id }}</a></td>
+                <td>{{ comanda.mesa }}</td>
+                <td>{{ comanda.comanda }}</td>
+                <td>{{ comanda.importe }}</td>
+                <td>{% if comanda.pagado %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('comanda_show', { 'id': comanda.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('comanda_edit', { 'id': comanda.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('comanda_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
